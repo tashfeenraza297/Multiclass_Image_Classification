@@ -7,6 +7,11 @@ import pandas as pd
 import json
 import gdown
 import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Set page config
 st.set_page_config(page_title="Dog Breed Classifier", layout="wide")
@@ -70,18 +75,31 @@ def load_tf_model():
     model_path = "model.keras"
     # Download model from Google Drive if it doesn't exist
     if not os.path.exists(model_path):
-        with st.spinner("Downloading model from Google Drive..."):
-            gdown.download(
-                "https://drive.google.com/file/d/18TWbFawj2xcVtXvoYrWxiskJRr38oOpi/view?usp=sharing",
-                model_path,
-                quiet=False
-            )
+        try:
+            with st.spinner("Downloading model from Google Drive..."):
+                logger.info("Starting model download from Google Drive")
+                gdown.download(
+                    "https://drive.google.com/uc?id=1CdCTG6XYaTAcWdUOwVzUklQTCUZsl4YC",
+                    model_path,
+                    quiet=False
+                )
+                logger.info(f"Model downloaded to {model_path}")
+                # Verify file exists and is not empty
+                if not os.path.exists(model_path) or os.path.getsize(model_path) == 0:
+                    raise FileNotFoundError(f"Failed to download model.keras or file is empty at {model_path}")
+        except Exception as e:
+            logger.error(f"Download error: {str(e)}")
+            st.error(f"Failed to download model: {str(e)}. Please check the Google Drive link or network connection.")
+            raise
     
     try:
+        logger.info(f"Loading model from {model_path}")
         model = tf.keras.models.load_model(model_path)
+        logger.info("Model loaded successfully")
         return model
     except Exception as e:
-        st.error(f"Error loading model: {str(e)}. Ensure the downloaded 'model.keras' is valid.")
+        logger.error(f"Model load error: {str(e)}")
+        st.error(f"Error loading model: {str(e)}. Ensure the downloaded 'model.keras' is a valid .keras file.")
         raise
 
 model = load_tf_model()
