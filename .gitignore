@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+
+# Dataset
+dataset/
+
+Test_images/
+# Cache and temp files
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Model files
+model/
+*.h5
+*.keras
+*.hdf5
+
