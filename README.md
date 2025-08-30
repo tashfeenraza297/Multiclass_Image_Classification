@@ -1,9 +1,9 @@
-🐶 Dog Breed Classification
-
+**🐶 Dog Breed Classification
+**
 A deep learning project that classifies dog breeds from images using InceptionResNetV2. The model is deployed with Streamlit for an interactive web interface.
 
-📌 About the Project
-
+**📌 About the Project
+**
 This project demonstrates a multiclass image classifier trained on 120 dog breeds.
 
 Backbone model: InceptionResNetV2 (Transfer Learning).
@@ -12,8 +12,8 @@ Deployment: Streamlit app for easy predictions.
 
 Outputs: Top predicted breed + confidence scores + top 5 predictions.
 
-📂 Dataset
-
+**📂 Dataset
+**
 Dataset used: https://drive.google.com/drive/folders/1z31bsh7gNrUiwameOEWhqtWNZuKEdKQ7
 
 Or you can use the Kaggle version
