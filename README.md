@@ -92,7 +92,7 @@ The `app.py` script automatically downloads and loads the model from Google Driv
 ## 🌐 Deployment
 
 Deployed on **Streamlit Cloud** for easy access.
-👉 *Demo Link Coming Soon*
+🔗 [Demo Link](https://dog-breed-classifierr.streamlit.app/)
 
 ---
 
